@@ -1,4 +1,3 @@
-{{--@extends('layouts.default');--}}
 
 <meta charset="UTF-8">
 <meta name="viewport"

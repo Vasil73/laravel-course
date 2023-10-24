@@ -1,5 +1,3 @@
-{{--@extends('layouts.default');--}}
-
 
 <header class="container-xxl">
     <div>

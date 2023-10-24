@@ -1,6 +1,5 @@
 @extends('layouts.default')
 
-
 @section('content')
     <h1>Контакты</h1>
     <p>Адрес: {{ $address }}</p>

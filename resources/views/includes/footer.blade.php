@@ -1,6 +1,4 @@
 
-
-
     <footer class="container-xxl">
         <div>
             <div class="d-flex flex-wrap justify-content-between align-items-center px-md-4 p-2 mb-3 border-top">
