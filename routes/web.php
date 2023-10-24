@@ -14,7 +14,7 @@ Route::get ('/test-database', function (){
 
 Route::get ('/', function () {
     $data = [
-        'name' => 'Vasily Shubin',
+        'name' => 'Василий Шубин',
         'age' => '50',
         'position' => 'Разработчик',
         'address' => 'ННовгород',
@@ -25,7 +25,7 @@ Route::get ('/', function () {
 
 Route::get ('/contacts', function () {
     $data = [
-        'address' => 'NNovgorod',
+        'address' => 'ННовгород',
         'post_code' => '12345',
         'email' => 'vs@test.ru',
         'phone' => '555-1234'
