@@ -1,35 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Employee;
+use App\Http\Controllers\EmployeeController;
 
-Route::get ('/test-database', function (){
-    $employee = new Employee();
-    $employee->name = 'Василий Шубин';
-    $employee->email = 'vas@example.com';
-    $employee->save ();
 
-    return 'Сотрудник сохранен в базе данных.';
-});
 
-Route::get ('/', function () {
-    $data = [
-        'name' => 'Василий Шубин',
-        'age' => '50',
-        'position' => 'Разработчик',
-        'address' => 'ННовгород',
-    ];
-
-    return view ('home', $data);
-});
-
-Route::get ('/contacts', function () {
-    $data = [
-        'address' => 'ННовгород',
-        'post_code' => '12345',
-        'email' => 'vs@test.ru',
-        'phone' => '555-1234'
-    ];
-
-    return view ('contacts', $data);
-});
+Route::get ('/index', [EmployeeController::class, 'index'])->name ('index');
+Route::get ('/index/edit/{id}', [EmployeeController::class, 'edit'])->name ('index.edit');
+Route::put ('/employee/update/{id}', [EmployeeController::class, 'update'])->name ('employee.update');
