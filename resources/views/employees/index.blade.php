@@ -41,7 +41,7 @@
                             </div>
                     </td>
                 </tr>
-            @endforeach.
+            @endforeach
             </tbody>
         </table>
         <div class=""><a class="btn btn-success" href="/employees/create">Добавить работника</a></div>

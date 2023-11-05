@@ -5,89 +5,81 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
-class EmployeeController extends Controller
-{
-    public function index()
+    class EmployeeController extends Controller
     {
-        $employees = Employee::all();
-        return view('employees.index', compact ('employees'));
-    }
-
-    public function store(Request $request)
-    {
-
-        $name = $request->input('name');
-        $surname = $request->input('surname');
-        $email = $request->input('email');
-        $position = $request->input('position');
-        $address = $request->input('address');
-        $json_data = $request->input('json_data');
-
-        $data = json_decode($json_data, true);
-
-        foreach ($data as $key => $value) {
-            $$key = $value;
+        public function index()
+        {
+            $employees = Employee::all();
+            return view('employees.index', compact ('employees'));
         }
 
-        $employee = new Employee();
-        $employee->name = $name;
-        $employee->surname = $surname;
-        $employee->email = $email;
-        $employee->position = $position;
-        $employee->address = $address;
+        public function store(Request $request)
+        {
 
-        return $employee->save();
+            $name = $request->input('name');
+            $surname = $request->input('surname');
+            $email = $request->input('email');
+            $position = $request->input('position');
+            $address = $request->input('address');
+            $json_data = $request->input('json_data');
 
-    }
+            $data = json_decode($json_data, true);
 
-    public function edit($id): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
-    {
-        $employee = Employee::find($id);
+            foreach ($data as $key => $value) {
+                $$key = $value;
+            }
 
-        return view('employees/employee-update', compact('employee'));
-    }
+            $employee = new Employee();
+            $employee->name = $name;
+            $employee->surname = $surname;
+            $employee->email = $email;
+            $employee->position = $position;
+            $employee->address = $address;
 
-    public function update(Request $request, $id)
-    {
+            return $employee->save();
 
-        $request->validate([
-            'name' => 'required',
-            'surname' => 'required',
-            'email' => 'required|email',
-            'position' => 'required',
-            'address' => 'required',
-        ]);
-
-        $employee = Employee::find($id);
-        $employee->name = $request->input('name');
-        $employee->surname = $request->input('surname');
-        $employee->email = $request->input('email');
-        $employee->position = $request->input('position');
-        $employee->address = $request->input('address');
-        $json_data = $request->input('json_data');
-
-        $data = json_decode($json_data, true);
-
-        foreach ($data as $key => $value) {
-            $$key = $value;
         }
 
-        $employee->save();
+        public function edit($id)
+        {
+            $employee = Employee::find($id);
 
-        return redirect (route ('index'));
+            return view('employees/employee-update', compact('employee'));
+        }
+
+        public function update(Request $request, $id)
+        {
+
+            $employee = Employee::find($id);
+            $employee->name = $request->input('name');
+            $employee->surname = $request->input('surname');
+            $employee->email = $request->input('email');
+            $employee->position = $request->input('position');
+            $employee->address = $request->input('address');
+            $json_data = $request->input('json_data');
+
+            $data = json_decode($json_data, true);
+
+            foreach ($data as $key => $value) {
+                $$key = $value;
+            }
+
+            $employee->save();
+
+            return redirect (route ('index'));
+        }
+
+        public function getPath(Request $request)
+        {
+            $path = $request->path ();
+            return "Path: " . $path;
+        }
+
+        public function getUrl(Request $request)
+        {
+            $url = $request->url ();
+            return "URL: " . $url;
+        }
+
     }
-
-    public function getPath(Request $request)
-    {
-        $path = $request->path ();
-        return "Path: " . $path;
-    }
-
-    public function getUrl(Request $request)
-    {
-        $url = $request->url ();
-        return "URL: " . $url;
-    }
-
-}
 
