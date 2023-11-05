@@ -34,11 +34,9 @@
                     <td>{{ $employee->position }}</td>
                     <td>{{ $employee->address }}</td>
                     <td>
-                            <div class="">
                                 <a class="text-decoration-none link-info"
                                    href="{{ route ('index.edit', $employee->id) }}">
                                     Редактировать</a>
-                            </div>
                     </td>
                 </tr>
             @endforeach
