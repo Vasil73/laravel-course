@@ -12,25 +12,34 @@ class Employee extends Model
 {
     public $timestamps = false;
 
-    use HasFactory;
-
-//    public mixed $name;
-//    public mixed $surname;
-//    public mixed $email;
-//    public mixed $position;
-//    public mixed $address;
-//
-//    /**
-//     * The attributes that are mass assignable.
-//     *
-//     * @var array
-//     */
-//    protected $fillable = [
-//        'name',
-//        'surname',
-//        'email',
-//        'position',
-//        'address'
+//    protected $casts = [
+//        'json_data' => 'array'
 //    ];
 
+    use HasFactory;
+
+
+    public mixed $name;
+    public mixed $surname;
+    public mixed $email;
+    public mixed $position;
+    public mixed $address;
+    /**
+     * @var false|mixed|string
+     */
+    public mixed $json_data;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name',
+        'surname',
+        'email',
+        'position',
+        'address',
+        'json_data'
+    ];
 }

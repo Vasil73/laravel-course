@@ -6,5 +6,5 @@ use App\Http\Controllers\EmployeeController;
 
 
 Route::get ('/index', [EmployeeController::class, 'index'])->name ('index');
-Route::get ('/index/edit/{id}', [EmployeeController::class, 'edit'])->name ('index.edit');
+Route::get ('/index/store', [EmployeeController::class, 'store'])->name ('index.edit');
 Route::put ('/employee/update/{id}', [EmployeeController::class, 'update'])->name ('employee.update');

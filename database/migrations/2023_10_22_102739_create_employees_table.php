@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string ('email');
             $table->string ('position');
             $table->string ('address');
+            $table->json('json_data')->nullable ();
         });
     }
 
