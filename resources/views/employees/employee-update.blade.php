@@ -11,9 +11,9 @@
     </head>
     <body>
     <div class="container">
-        <h1 class="h1 text-muted">Добавить работника</h1>
+        <h1 class="h1 text-muted">Изменить данные работника</h1>
 
-        <form class="px-4" method="POST" action="{{ route ('employee.update', $employee->id) }}"
+        <form class="px-4" method="POST" action=""
               enctype="multipart/form-data">
             @csrf
             @method('PUT')
@@ -53,7 +53,7 @@
                           class="mb-3 px-4 form-control" required = "true">{{ $employee->json_data }}</textarea>
             </div>
             <div class="mt-4">
-                <button class="btn btn-primary" type="submit">Обновить</button>
+                <button class="btn btn-primary" type="submit">Отправить</button>
             </div>
         </form>
     </div>

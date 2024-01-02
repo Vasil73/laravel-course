@@ -2,44 +2,27 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+    use Illuminate\Database\Eloquent\Model;
 
-/**
- * @method static find($id)
- */
-class Employee extends Model
-{
-    public $timestamps = false;
+    class Employee extends Model
+    {
+        public $timestamps = false;
 
-//    protected $casts = [
-//        'json_data' => 'array'
-//    ];
+//        public mixed $name;
+//        public mixed $surname;
+//        public mixed $email;
+//        public mixed $position;
+//        public mixed $address;
+        protected $fillable = [
+            'name',
+            'surname',
+            'position',
+            'address',
+            'json_data',
+        ];
 
-    use HasFactory;
-
-
-    public mixed $name;
-    public mixed $surname;
-    public mixed $email;
-    public mixed $position;
-    public mixed $address;
-    /**
-     * @var false|mixed|string
-     */
-    public mixed $json_data;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'surname',
-        'email',
-        'position',
-        'address',
-        'json_data'
-    ];
-}
+        public function processJsonData($json_data): void
+        {
+            $this->json_data = json_encode($json_data);
+        }
+    }

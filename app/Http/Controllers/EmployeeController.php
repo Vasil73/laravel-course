@@ -2,61 +2,57 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Employee;
-use Illuminate\Http\Request;
+    use Illuminate\Http\Request;
+    use App\Models\Employee;
 
     class EmployeeController extends Controller
     {
-        public function index()
-        {
-            $employees = Employee::all ();
-            return view ( 'employees.index', compact ( 'employees' ) );
-        }
+
+    public function index()
+    {
+        $employees = Employee::all();
+        return view('employees/index', compact ('employees'));
+    }
 
         public function store(Request $request)
-        {
-            $name = $request->input ( 'name' );
-            $surname = $request->input ( 'surname' );
-            $email = $request->input ( 'email' );
-            $position = $request->input ( 'position' );
-            $address = $request->input ( 'address' );
-            $json_data = $request->input ( 'json_data' );
+    {
+        $employees = new Employee;
+
+        $employees->name = $request->input('name');
+        $employees->surname = $request->input('surname');
+        $employees->email = $request->input('email');
+        $employees->position = $request->input('position');
+        $employees->address = $request->input('address');
+
+        $json_data = json_decode($request->input('json_data'), true);
+
+        var_dump ($json_data);
 
 
-            $employee = Employee::all ();
-            $employee->name = $name;
-            $employee->surname = $surname;
-            $employee->email = $email;
-            $employee->position = $position;
-            $employee->address = $address;
-            $employee->json_data = $json_data;
-            $employee->json_data = $request->input ( 'json_data' );
+        $employees->processJsonData($json_data);
 
-            $employee->save ();
+        $employees->save();
 
-            return response ()->json ( [
-                'message' => 'Data saved successfully',
-                'employee' => $employee
-            ] );
-        }
+         return redirect('/');
+    }
 
-        public function update(Request $request, $id)
+        public function update(Request $request, $id): \Illuminate\Http\JsonResponse
 
         {
-            $employee = Employee::find($id);
+            $employee = Employee::find ( $id );
             if (!$employee) {
-                return response()->json(['error' => 'User is not found'], 404);
+                return response ()->json ( ['error' => 'User is not found'], 404 );
             }
 
-            $employee->name = $request->input('name');
-            $employee->surname = $request->input('surname');
-            $employee->email = $request->input('email');
-            $employee->position = $request->input('position');
-            $employee->address = $request->input('address');
-
-            $json_data = $request->input('json_data');
-            if (is_array($json_data)) {
-                $employee->json_data = json_encode($json_data);
+            $employee->name = $request->input ( 'name' );
+            $employee->surname = $request->input ( 'surname' );
+            $employee->email = $request->input ( 'email' );
+            $employee->position = $request->input ( 'position' );
+            $employee->address = $request->input ( 'address' );
+            $employee->save ();
+            $json_data = $request->input ( 'json_data' );
+            if (is_array ( $json_data )) {
+                $employee->json_data = json_encode ( $json_data );
                 foreach ($json_data as $key => $value) {
                     $employee->$key = $value;
                 }
@@ -64,24 +60,28 @@ use Illuminate\Http\Request;
                 $employee->json_data = $json_data;
             }
 
-            $employee->save();
+            $json_data = json_decode($request->input('json_data'), true);
+
+            $employee->processJsonData($json_data);
+
+            var_dump ($json_data);
 
             return response()->json([
                 'message' => 'Data updated successfully',
                 'employee' => $employee,
                 'path' => $this->getPath ($request),
-                 'url' => $this->getUrl ($request)
+                'url' => $this->getUrl ($request)
             ]);
 
         }
 
-        public function getPath(Request $request)
+        public function getPath(Request $request): string
         {
             $path = $request->path ();
             return "Path: " . $path;
         }
 
-        public function getUrl(Request $request)
+        public function getUrl(Request $request): string
         {
             $url = $request->url ();
             return "URL: " . $url;

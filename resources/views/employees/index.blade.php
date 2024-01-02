@@ -35,14 +35,15 @@
                     <td>{{ $employee->address }}</td>
                     <td>
                                 <a class="text-decoration-none link-info"
-                                   href="{{ route ('index.edit', $employee->id) }}">
+                                   href="employee-update.blade.php">
                                     Редактировать</a>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
-        <div class=""><a class="btn btn-success" href="/employees/create">Добавить работника</a></div>
+        <div class=""><a class="btn btn-success"
+                         href="{{ route ( 'index.edit' ) }}">Добавить работника</a></div>
     </div>
     </body>
     </html>
