@@ -16,6 +16,7 @@ class VerifyCsrfToken extends Middleware
         '/employee/update/5',
         '/employee/update/1',
         '/employee/update',
-        '/index/store'
+        '/index/store',
+        //'/books/store'
     ];
 }

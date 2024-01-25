@@ -23,16 +23,18 @@ namespace App\Http\Requests;
         public function rules(): array
         {
             return [
-                'book_title' => 'required|not_only_whitespace|min:3|max:255|unique:books,title',
-                'author_name' => 'required|not_only_whitespace|min:2|max:100'
+                'title' => 'required|not_only_whitespace|min:3|max:255|unique:books,title',
+                'author' => 'required|not_only_whitespace|min:2|max:100'
             ];
         }
 
         public function messages(): array
         {
             return [
-                'author_name.required' => 'Не забывайте указать имя автора',
-                'book_title.required' => 'Без названия книги ни как',
+                'author.required' => 'Не забывайте указать имя автора',
+                'title.required' => 'Без названия книги ни как',
+                'author.min' => 'Имя должно быть длиннее',
+                'title.min' => 'В названии должно быть больше трех букв'
             ];
         }
     }

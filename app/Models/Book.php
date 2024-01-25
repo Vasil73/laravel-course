@@ -9,6 +9,11 @@ class Book extends Model
 {
     use HasFactory;
 
-    public mixed $book_title;
-    public mixed $author_name;
+    public $timestamps = false;
+
+    protected $fillable = [
+      'title',
+      'author',
+      'genre'
+    ];
 }

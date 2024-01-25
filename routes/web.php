@@ -4,10 +4,10 @@ use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 
+//
+//Route::get('/employee', [EmployeeController::class, 'index'])->name ('index');
+//Route::post ('/employee/store', [EmployeeController::class, 'store'])->name ('index.edit');
+//Route::post('/employee/update/{id}', [EmployeeController::class, 'update']);
 
-Route::get('/employee', [EmployeeController::class, 'index'])->name ('index');
-Route::post ('/employee/store', [EmployeeController::class, 'store'])->name ('index.edit');
-Route::post('/employee/update/{id}', [EmployeeController::class, 'update']);
-
-Route::get('/books', [BookController::class, 'index']);
-Route::post('/books/store', [BookController::class, 'store']);
+Route::get('/books', [BookController::class, 'index'])->name ('books-index');
+Route::post('/books/store', [BookController::class, 'store'])->name ('books-name');

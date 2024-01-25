@@ -4,29 +4,28 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BooksRequest;
 use App\Models\Book;
+use Illuminate\Http\Client\Request;
 
-    class BookController extends Controller
+class BookController extends Controller
     {
         public function index(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\Foundation\Application
         {
             $booksData = new Book();
-            return view ('books.index', ['data' => $booksData -> all()]);
-          //  return view('books.index');
+          //  return view ('form', ['data' => $booksData -> all()]);
+            return view('form');
         }
 
         public function store(BooksRequest $request): \Illuminate\Http\JsonResponse
         {
-            $request->validate ([
-                'book_title' => 'required|not_only_whitespace|min:3|max:255|unique:books,title',
-                'author_name' => 'required|not_only_whitespace|min:2|max:100'
-            ]);
-
+           // var_dump ($request->all ());
             $booksData = new Book();
-            $booksData->book_title = $request->input ('book_title');
-            $booksData->author_name = $request->input ('author_name');
+            $booksData->title = $request->input ('title');
+            $booksData->author = $request->input ('author');
+            $booksData->genre = $request->input ('genre');
+
             $booksData->save ();
 
-           // return redirect ()->route ( 'books.index' )->with ( 'success', 'Вы все сделали правильно' );
-            return response ()->json ('Вы все сделали правильно');
+          //  return redirect ()->route ( 'books-index' )->with ( 'success', 'Вы все сделали правильно' );
+            return response ()->json ( 'Вы все правильно сделали, книга добавлена');
         }
     }
