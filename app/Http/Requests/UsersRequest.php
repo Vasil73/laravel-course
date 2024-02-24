@@ -24,7 +24,7 @@ class UsersRequest extends FormRequest
     {
         return [
             'name' => 'required|not_only_whitespace|min:3|max:50|',
-            'surname' => 'required|not_only_whitespace|min:2|max:50|unique:surname',
+            'surname' => 'required|not_only_whitespace|min:2|max:50|unique:users',
             'email' => 'required|email|unique:users|regex:/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/'
         ];
     }
