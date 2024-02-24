@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Requests\UsersRequest;
 use App\Models\Users;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 
 /**
  * Class UsersController
@@ -21,7 +23,8 @@ class UsersController extends Controller
      */
     public function createUserForm(): View
     {
-        return view('create-users_form');
+        $user = Users::first();
+        return view('create-users_form', compact ('user'));
     }
 
     /**
@@ -33,6 +36,7 @@ class UsersController extends Controller
     {
         $users = Users::all();
         return response()->json($users);
+      //  return view('create-users_form', compact('users'));
     }
 
     /**
@@ -41,7 +45,7 @@ class UsersController extends Controller
      * @param int $id
      * @return JsonResponse
      */
-    public function getUserId(int $id): JsonResponse
+    public function getUserId($id): JsonResponse
     {
         $user = Users::find($id);
         if (!$user) {
@@ -66,6 +70,24 @@ class UsersController extends Controller
         $user->save();
 
         return response()->json(['message' => 'Пользователь успешно создан'], 201);
+       // return redirect ()->route ( 'users' )->with ( 'success', 'Пользователь успешно создан' );
     }
+    /**
+     * Удаляет пользователя по ID и возвращает сообщение об успешном удалении.
+     *
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function deleteUserId($id): JsonResponse
+    {
+        $user = Users::find($id);
 
+        if (!$user) {
+            return response()->json(['message' => 'Пользователь не найден'], 404);
+        }
+
+        $user->delete();
+
+        return response()->json(['message' => 'Пользователь успешно удален'], 200);
+    }
 }
