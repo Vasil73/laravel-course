@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\UsersRequest;
 use App\Models\Users;
 use Illuminate\Contracts\View\View;
@@ -66,4 +67,5 @@ class UsersController extends Controller
 
         return response()->json(['message' => 'Пользователь успешно создан'], 201);
     }
+
 }

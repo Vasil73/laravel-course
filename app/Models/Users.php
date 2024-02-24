@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Users extends Model
 {
     use HasFactory;
+<<<<<<< HEAD
 
     public $timestamps = false;
 
@@ -18,4 +19,6 @@ class Users extends Model
 //        'surname',
 //        'email'
 //    ];
+=======
+>>>>>>> origin/master
 }
