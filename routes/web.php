@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\UserPdfController;
+use App\Http\Controllers\LogController;
 
 
 Route::get('/employee', [EmployeeController::class, 'index'])->name ('index');
@@ -20,3 +21,5 @@ Route::get ('/user/{id}', [UsersController::class, 'getUserId']);
 Route::post ('/user/create/', [UsersController::class, 'createUser'])->name ('user-create');
 Route::delete ('/user/delete/{id}', [UsersController::class, 'deleteUserId'])->name ('user-delete');
 Route::get ('/user/resume-pdf/{id}', [UserPdfController::class, 'indexUserPdf']);
+
+Route::get ('/logs', [LogController::class, 'index']);
