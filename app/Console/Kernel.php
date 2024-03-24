@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\logsClear;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -24,4 +25,10 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
+    protected $commands = [
+
+        logsClear::class,
+
+    ];
 }

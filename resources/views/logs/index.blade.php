@@ -9,6 +9,7 @@
     <title>Logs</title>
 </head>
 <body>
+
 <div class="container">
     <h1>Logs</h1>
 
@@ -37,6 +38,5 @@
         </tbody>
     </table>
 </div>
-
 </body>
 </html>
