@@ -21,3 +21,5 @@ Route::get ('/user/{id}', [UsersController::class, 'getUserId']);
 Route::post ('/user/create/', [UsersController::class, 'createUser'])->name ('user-create');
 Route::delete ('/user/delete/{id}', [UsersController::class, 'deleteUserId'])->name ('user-delete');
 Route::get ('/user/resume-pdf/{id}', [UserPdfController::class, 'indexUserPdf']);
+
+Route::get ('/logs', [LogController::class, 'index'])->name('logs.index');
